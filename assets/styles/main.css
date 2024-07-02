@@ -1,3 +1,31 @@
+body {
+    display: flex;
+}
+
 canvas {
     border: 1px solid #000000;
+}
+
+section {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+}
+
+section {
+    display: flex;
+    align-items: center;
+}
+
+input[type='color'] {
+    width: 100%;
+}
+
+label {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.invisible {
+    display: none;
 }

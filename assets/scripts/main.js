@@ -16,10 +16,55 @@ canvas.addEventListener('click', (e) => {
     let shapeRandom = getRandomNumber();
 
     if (shapeRandom % 2 == 0 ) {
-        let rectangle = new Rectangle(getRandomColor(), e.offsetX, e.offsetY, getRandomNumber(), getRandomNumber());
+        let rectangle = new Rectangle(getRandomColor(),
+                                      e.offsetX,
+                                      e.offsetY,
+                                      getRandomNumber(),
+                                      getRandomNumber());
         rectangle.draw(ctx);
     } else {
-        let circle = new Circle(getRandomColor(), e.offsetX, e.offsetY, getRandomNumber());
+        let circle = new Circle(getRandomColor(),
+                                e.offsetX,
+                                e.offsetY,
+                                getRandomNumber());
         circle.draw(ctx);
     }
 });
+
+// FORMULAIRE DE CREATION DE FORMES
+const form = document.querySelector('#shapeForm');
+const shapeChoice = document.querySelector('#shape');
+const width = document.querySelector('#width');
+const height = document.querySelector('#height');
+const color = document.querySelector('#color');
+
+const widthContainer = document.querySelector('#width-container');
+const heightContainer = document.querySelector('#height-container');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (shapeChoice.value == 'rectangle') {
+        let rectangle = new Rectangle(color.value,
+                                      getRandomNumber(),
+                                      getRandomNumber(),
+                                      width.value || getRandomNumber(),
+                                      height.value || getRandomNumber());
+        rectangle.draw(ctx);
+    } else if (shapeChoice.value == 'circle') {
+        let circle = new Circle(color.value,
+                                getRandomNumber(),
+                                getRandomNumber(),
+                                width.value || getRandomNumber());
+        circle.draw(ctx);
+    }
+});
+
+shapeChoice.addEventListener('change', () => {
+    heightContainer.classList.toggle('invisible');
+    if (shapeChoice.value == 'rectangle') {
+        widthContainer.querySelector('label').textContent = 'Largeur : ';
+    } else {
+        widthContainer.querySelector('label').textContent = 'Rayon : ';
+    }
+})
